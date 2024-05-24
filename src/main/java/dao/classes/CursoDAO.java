@@ -10,14 +10,6 @@ import java.util.List;
 
 public class CursoDAO implements ICursoDAO {
 
-    private void abrirConexao (){
-
-    }
-    private void fecharConexao(EntityManagerFactory entityManagerFactory, EntityManager entityManager){
-        entityManager.close();
-        entityManagerFactory.close();
-    }
-
     @Override
     public Curso cadastrarCurso(Curso curso) {
         EntityManagerFactory entityManagerFactory =
@@ -48,5 +40,10 @@ public class CursoDAO implements ICursoDAO {
     @Override
     public void excluirCursoPorId(Long id) {
 
+    }
+    @Override
+    public void fecharConexao(EntityManagerFactory entityManagerFactory, EntityManager entityManager){
+        entityManager.close();
+        entityManagerFactory.close();
     }
 }

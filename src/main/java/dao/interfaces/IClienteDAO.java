@@ -2,6 +2,8 @@ package dao.interfaces;
 
 import domain.Cliente;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import java.util.List;
 
 public interface IClienteDAO {
@@ -10,4 +12,5 @@ public interface IClienteDAO {
     public List<Cliente> buscarTodosClientes();
     public Cliente buscarClientePorId(Long id);
     public void excluirClientePorId (Long id);
+    public void fecharConexao(EntityManagerFactory entityManagerFactory, EntityManager entityManager);
 }

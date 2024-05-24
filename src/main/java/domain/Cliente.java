@@ -47,9 +47,16 @@ public class Cliente {
     @NotBlank
     private String endereco;
 
-    @OneToOne
-    @JoinColumn(name = "matricula_id")
+    @OneToOne(mappedBy = "cliente", cascade = CascadeType.ALL)
     @Valid
+    @NotNull
     private Matricula matricula;
 
+    public Cliente(String nome, String cpf, String telefone, String email, String endereco){
+        this.nome = nome;
+        this.cpf = cpf;
+        this.telefone = telefone;
+        this.email = email;
+        this.endereco = endereco;
+    }
 }

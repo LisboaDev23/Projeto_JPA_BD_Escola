@@ -3,12 +3,21 @@ package dao.classes;
 import dao.interfaces.IMatriculaDAO;
 import domain.Matricula;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import java.util.List;
 
 public class MatriculaDAO implements IMatriculaDAO {
     @Override
     public Matricula cadastrarMatricula(Matricula matricula) {
-        return null;
+        EntityManagerFactory entityManagerFactory =
+                Persistence.createEntityManagerFactory("JPA-System");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        entityManager.getTransaction().begin();
+        entityManager.persist(matricula);
+        entityManager.getTransaction().commit();
+        return matricula;
     }
 
     @Override
@@ -29,5 +38,10 @@ public class MatriculaDAO implements IMatriculaDAO {
     @Override
     public void excluirMatriculaPorId(Long id) {
 
+    }
+    @Override
+    public void fecharConexao(EntityManagerFactory entityManagerFactory, EntityManager entityManager) {
+        entityManager.close();
+        entityManagerFactory.close();
     }
 }

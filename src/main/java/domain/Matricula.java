@@ -2,10 +2,12 @@ package domain;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 
 import javax.persistence.*;
+import java.rmi.MarshalException;
 
 @Getter
 @Setter
@@ -25,7 +27,7 @@ public class Matricula {
 
     @OneToOne
     @JoinColumn(name = "cliente_id")
-    @NotBlank
+    @NotNull
     @Valid
     private Cliente cliente;
 
@@ -37,5 +39,11 @@ public class Matricula {
 
     @ManyToOne
     @JoinColumn(name = "curso_id")
+    @Valid
+    @NotNull
     private Curso curso;
+
+    public Matricula(String codigoMatricula){
+        this.codigoMatricula = codigoMatricula;
+    }
 }
