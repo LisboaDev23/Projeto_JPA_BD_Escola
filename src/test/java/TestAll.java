@@ -10,6 +10,9 @@ import domain.Matricula;
 import org.junit.Assert;
 import org.junit.Test;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import java.math.BigDecimal;
 
 public class TestAll {
@@ -17,6 +20,9 @@ public class TestAll {
     private IClienteDAO clienteDAO;
     private IMatriculaDAO matriculaDAO;
     private ICursoDAO cursoDAO;
+
+    private final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("JPA-System");
+    private EntityManager entityManager = entityManagerFactory.createEntityManager();
 
     public TestAll(){
         clienteDAO = new ClienteDAO();
@@ -40,15 +46,15 @@ public class TestAll {
                 "práticas, modelagem de softwares complexos");
         BigDecimal precoCursoEngSoft = new BigDecimal("4000.0");
         curso.setPreco(precoCursoEngSoft);
-        curso = cursoDAO.cadastrarCurso(curso);
+        curso = cursoDAO.cadastrarCurso(entityManagerFactory,entityManager,curso);
 
         //CREATE OBJECT MATRICULA
         String codigoMatricula = "256798";
         Matricula matricula = new Matricula(codigoMatricula);
         matricula.setCliente(cliente);
         matricula.setCurso(curso);
-        cliente = clienteDAO.cadastrarCliente(cliente);
-        matricula = matriculaDAO.cadastrarMatricula(matricula);
+        cliente = clienteDAO.cadastrarCliente(entityManagerFactory,entityManager,cliente);
+        matricula = matriculaDAO.cadastrarMatricula(entityManagerFactory,entityManager,matricula);
 
 
         Assert.assertNotNull(cliente);
@@ -57,8 +63,13 @@ public class TestAll {
         Assert.assertNotNull(matricula.getId());
         Assert.assertNotNull(curso);
         Assert.assertNotNull(curso.getId());
+
+
+        entityManager.close();
+        entityManagerFactory.close();
     }
 
+    @Test
     public void excluirEntidadesTest(){
 
     }

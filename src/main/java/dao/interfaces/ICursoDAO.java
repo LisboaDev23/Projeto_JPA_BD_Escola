@@ -8,10 +8,9 @@ import java.util.List;
 
 public interface ICursoDAO {
 
-    public Curso cadastrarCurso(Curso curso);
-    public Curso excluirCurso(Curso curso);
-    public List<Curso> buscarTodosCursos();
-    public Curso buscarCursoPorId(Long id);
-    public void excluirCursoPorId (Long id);
-    public void fecharConexao(EntityManagerFactory entityManagerFactory, EntityManager entityManager);
+    public Curso cadastrarCurso(EntityManagerFactory entityManagerFactory, EntityManager entityManager,Curso curso);
+    public Curso excluirCurso(EntityManagerFactory entityManagerFactory, EntityManager entityManager,Curso curso);
+    public List<Curso> buscarTodosCursos(EntityManagerFactory entityManagerFactory, EntityManager entityManager);
+    public Curso buscarCursoPorId(EntityManagerFactory entityManagerFactory, EntityManager entityManager,Long id);
+    public void excluirCursoPorId (EntityManagerFactory entityManagerFactory, EntityManager entityManager,Long id);
 }

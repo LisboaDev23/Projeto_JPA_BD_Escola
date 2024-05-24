@@ -11,39 +11,30 @@ import java.util.List;
 public class CursoDAO implements ICursoDAO {
 
     @Override
-    public Curso cadastrarCurso(Curso curso) {
-        EntityManagerFactory entityManagerFactory =
-                Persistence.createEntityManagerFactory("JPA-System");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
+    public Curso cadastrarCurso(EntityManagerFactory entityManagerFactory, EntityManager entityManager, Curso curso) {
         entityManager.getTransaction().begin();
         entityManager.persist(curso);
         entityManager.getTransaction().commit();
-        fecharConexao(entityManagerFactory,entityManager);
         return curso;
     }
 
     @Override
-    public Curso excluirCurso(Curso curso) {
+    public Curso excluirCurso(EntityManagerFactory entityManagerFactory, EntityManager entityManager,Curso curso) {
         return null;
     }
 
     @Override
-    public List<Curso> buscarTodosCursos() {
+    public List<Curso> buscarTodosCursos(EntityManagerFactory entityManagerFactory, EntityManager entityManager) {
         return null;
     }
 
     @Override
-    public Curso buscarCursoPorId(Long id) {
+    public Curso buscarCursoPorId(EntityManagerFactory entityManagerFactory, EntityManager entityManager,Long id) {
         return null;
     }
 
     @Override
-    public void excluirCursoPorId(Long id) {
+    public void excluirCursoPorId(EntityManagerFactory entityManagerFactory, EntityManager entityManager,Long id) {
 
-    }
-    @Override
-    public void fecharConexao(EntityManagerFactory entityManagerFactory, EntityManager entityManager){
-        entityManager.close();
-        entityManagerFactory.close();
     }
 }

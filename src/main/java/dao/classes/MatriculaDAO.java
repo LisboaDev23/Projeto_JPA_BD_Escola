@@ -5,15 +5,11 @@ import domain.Matricula;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import java.util.List;
 
 public class MatriculaDAO implements IMatriculaDAO {
     @Override
-    public Matricula cadastrarMatricula(Matricula matricula) {
-        EntityManagerFactory entityManagerFactory =
-                Persistence.createEntityManagerFactory("JPA-System");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
+    public Matricula cadastrarMatricula(EntityManagerFactory entityManagerFactory, EntityManager entityManager,Matricula matricula) {
         entityManager.getTransaction().begin();
         entityManager.persist(matricula);
         entityManager.getTransaction().commit();
@@ -21,27 +17,22 @@ public class MatriculaDAO implements IMatriculaDAO {
     }
 
     @Override
-    public Matricula excluirMatricula(Matricula matriculas) {
+    public Matricula excluirMatricula(EntityManagerFactory entityManagerFactory, EntityManager entityManager,Matricula matriculas) {
         return null;
     }
 
     @Override
-    public List<Matricula> buscarTodasMatriculas() {
+    public List<Matricula> buscarTodasMatriculas(EntityManagerFactory entityManagerFactory, EntityManager entityManager) {
         return null;
     }
 
     @Override
-    public Matricula buscarMatriculaPorId(Long id) {
+    public Matricula buscarMatriculaPorId(EntityManagerFactory entityManagerFactory, EntityManager entityManager,Long id) {
         return null;
     }
 
     @Override
-    public void excluirMatriculaPorId(Long id) {
+    public void excluirMatriculaPorId(EntityManagerFactory entityManagerFactory, EntityManager entityManager,Long id) {
 
-    }
-    @Override
-    public void fecharConexao(EntityManagerFactory entityManagerFactory, EntityManager entityManager) {
-        entityManager.close();
-        entityManagerFactory.close();
     }
 }

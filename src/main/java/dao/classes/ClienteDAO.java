@@ -11,39 +11,30 @@ import java.util.List;
 public class ClienteDAO implements IClienteDAO {
 
     @Override
-    public Cliente cadastrarCliente(Cliente cliente) {
-        EntityManagerFactory entityManagerFactory =
-                Persistence.createEntityManagerFactory("JPA-System");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
+    public Cliente cadastrarCliente(EntityManagerFactory entityManagerFactory, EntityManager entityManager,Cliente cliente) {
         entityManager.getTransaction().begin();
         entityManager.persist(cliente);
         entityManager.getTransaction().commit();
-        fecharConexao(entityManagerFactory, entityManager);
         return cliente;
     }
 
     @Override
-    public Cliente excluirCliente(Cliente cliente) {
+    public Cliente excluirCliente(EntityManagerFactory entityManagerFactory, EntityManager entityManager,Cliente cliente) {
         return null;
     }
 
     @Override
-    public List<Cliente> buscarTodosClientes() {
+    public List<Cliente> buscarTodosClientes(EntityManagerFactory entityManagerFactory, EntityManager entityManager) {
         return null;
     }
 
     @Override
-    public Cliente buscarClientePorId(Long id) {
+    public Cliente buscarClientePorId(EntityManagerFactory entityManagerFactory, EntityManager entityManager,Long id) {
         return null;
     }
 
     @Override
-    public void excluirClientePorId(Long id) {
+    public void excluirClientePorId(EntityManagerFactory entityManagerFactory, EntityManager entityManager,Long id) {
 
-    }
-    @Override
-    public void fecharConexao(EntityManagerFactory entityManagerFactory, EntityManager entityManager) {
-        entityManager.close();
-        entityManagerFactory.close();
     }
 }
