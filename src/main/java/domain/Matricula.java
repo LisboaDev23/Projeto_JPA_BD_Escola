@@ -46,4 +46,5 @@ public class Matricula {
     public Matricula(String codigoMatricula){
         this.codigoMatricula = codigoMatricula;
     }
+
 }

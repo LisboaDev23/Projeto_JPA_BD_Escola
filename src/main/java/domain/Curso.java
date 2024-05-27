@@ -48,4 +48,5 @@ public class Curso {
 
     @OneToMany(mappedBy = "curso")
     private List<Matricula> matriculas;
+
 }
